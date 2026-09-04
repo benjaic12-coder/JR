@@ -36,9 +36,69 @@
             </form>
 
             <div id="errorMessage" class="error-message"></div>
+
+            <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
+            <p style="text-align: center; color: #999; font-size: 12px; margin-top: 15px;">
+                <strong>Acceso Rápido:</strong>
+            </p>
+            <button type="button" class="btn-login" onclick="autoLoginAdmin()" style="background: #27ae60; margin-bottom: 8px;">
+                ⚡ Entrar como Admin
+            </button>
+            <button type="button" class="btn-login" onclick="autoLoginClient()" style="background: #3498db;">
+                ⚡ Entrar como Cliente
+            </button>
         </div>
     </div>
 
     <script src="js/auth.js"></script>
+    <script>
+        function autoLoginAdmin() {
+            const users = auth.users;
+            const adminUser = users.find(u => u.role === 'admin');
+            
+            if (adminUser) {
+                const sessionData = {
+                    userId: adminUser.id,
+                    username: adminUser.username,
+                    role: adminUser.role,
+                    name: adminUser.name,
+                    email: adminUser.email,
+                    loginTime: new Date().toISOString(),
+                    token: auth.generateToken()
+                };
+                localStorage.setItem('jr_session', JSON.stringify(sessionData));
+                window.location.href = 'admin/dashboard.html';
+            }
+        }
+
+        function autoLoginClient() {
+            const users = auth.users;
+            const clientUser = users.find(u => u.role === 'client');
+            
+            if (clientUser) {
+                const sessionData = {
+                    userId: clientUser.id,
+                    username: clientUser.username,
+                    role: clientUser.role,
+                    name: clientUser.name,
+                    email: clientUser.email,
+                    loginTime: new Date().toISOString(),
+                    token: auth.generateToken()
+                };
+                localStorage.setItem('jr_session', JSON.stringify(sessionData));
+                window.location.href = 'client/dashboard.html';
+            }
+        }
+
+        // Auto-login como admin si se accede directamente
+        window.addEventListener('load', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('auto') === 'admin') {
+                autoLoginAdmin();
+            } else if (urlParams.get('auto') === 'client') {
+                autoLoginClient();
+            }
+        });
+    </script>
 </body>
 </html>
