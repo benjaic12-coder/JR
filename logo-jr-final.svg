@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320" role="img" aria-labelledby="title">
+  <title id="title">JR Inyección Electrónica</title>
+  <rect width="800" height="320" rx="42" fill="#13263d"/>
+  <rect x="24" y="24" width="752" height="272" rx="28" fill="none" stroke="#25b8b0" stroke-width="5"/>
+  <text x="68" y="224" font-family="Arial Black,Arial,sans-serif" font-size="190" font-weight="900" letter-spacing="2" fill="#f6f3ed">J</text>
+  <text x="255" y="224" font-family="Arial Black,Arial,sans-serif" font-size="190" font-weight="900" letter-spacing="2" fill="#f28f3b">R</text>
+  <path d="M510 84h178M510 122h128M510 160h155M510 198h110" stroke="#25b8b0" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="714" cy="84" r="9" fill="#f28f3b"/><circle cx="656" cy="198" r="9" fill="#f6f3ed"/>
+  <text x="510" y="250" font-family="Arial,sans-serif" font-size="24" font-weight="700" letter-spacing="5" fill="#f6f3ed">INYECCIÓN</text>
+</svg>
