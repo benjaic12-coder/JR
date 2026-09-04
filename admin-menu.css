@@ -1,0 +1,207 @@
+/* Admin Menu Styles */
+.admin-menu-toggle {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff5a36, #ff8a5b);
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 90, 54, 0.4);
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+.admin-menu-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(255, 90, 54, 0.6);
+}
+
+.admin-panel {
+  position: fixed;
+  right: -400px;
+  top: 0;
+  width: 380px;
+  height: 100vh;
+  background: linear-gradient(180deg, #f1f2ee 0%, #ffffff 100%);
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+  transition: right 0.4s ease;
+  z-index: 1000;
+  overflow-y: auto;
+  font-family: 'Manrope', sans-serif;
+}
+
+.admin-panel.active {
+  right: 0;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  border-bottom: 1px solid rgba(16, 19, 21, 0.1);
+  background: linear-gradient(135deg, #ff5a36, #ff8a5b);
+  color: white;
+}
+
+.admin-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.admin-close {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.admin-content {
+  padding: 24px;
+}
+
+.admin-section {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(16, 19, 21, 0.08);
+}
+
+.admin-section:last-child {
+  border-bottom: none;
+}
+
+.admin-section h4 {
+  margin: 0 0 16px 0;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #ff5a36;
+}
+
+.admin-section label {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: #687073;
+  font-weight: 500;
+}
+
+.admin-section input[type="text"],
+.admin-section input[type="number"],
+.admin-section input[type="email"] {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border: 1px solid rgba(16, 19, 21, 0.15);
+  border-radius: 6px;
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px;
+  transition: border-color 0.2s ease;
+}
+
+.admin-section input:focus {
+  outline: none;
+  border-color: #ff5a36;
+  box-shadow: 0 0 0 3px rgba(255, 90, 54, 0.1);
+}
+
+.admin-section input[type="checkbox"] {
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.admin-section label input[type="checkbox"] {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+.admin-section button {
+  width: 100%;
+  padding: 12px 16px;
+  margin-top: 8px;
+  background: linear-gradient(135deg, #ff5a36, #ff8a5b);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.admin-section button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 90, 54, 0.3);
+}
+
+.admin-section p {
+  margin: 12px 0;
+  font-size: 13px;
+  color: #687073;
+  line-height: 1.6;
+}
+
+.admin-section strong {
+  color: #101315;
+  font-weight: 600;
+}
+
+/* Overlay para cerrar el panel */
+.admin-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+.admin-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (max-width: 768px) {
+  .admin-panel {
+    width: 100%;
+    right: -100%;
+  }
+  
+  .admin-menu-toggle {
+    bottom: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-panel {
+    width: 100%;
+    right: -100%;
+  }
+  
+  .admin-section {
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+  }
+}
