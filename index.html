@@ -3,101 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JR - Acceso</title>
+    <title>JR - Sistema</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="login-page">
-    <div class="login-container">
-        <div class="login-box">
-            <h1>JR System</h1>
-            <p class="subtitle">Acceso a la Plataforma</p>
-            
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="username">Usuario:</label>
-                    <input type="text" id="username" name="username" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="password">Contraseña:</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="role">Acceso como:</label>
-                    <select id="role" name="role" required>
-                        <option value="">Seleccionar...</option>
-                        <option value="admin">Administrador</option>
-                        <option value="client">Cliente</option>
-                    </select>
-                </div>
-                
-                <button type="submit" class="btn-login">Iniciar Sesión</button>
-            </form>
-
-            <div id="errorMessage" class="error-message"></div>
-
-            <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
-            <p style="text-align: center; color: #999; font-size: 12px; margin-top: 15px;">
-                <strong>Acceso Rápido:</strong>
-            </p>
-            <button type="button" class="btn-login" onclick="autoLoginAdmin()" style="background: #27ae60; margin-bottom: 8px;">
-                ⚡ Entrar como Admin
-            </button>
-            <button type="button" class="btn-login" onclick="autoLoginClient()" style="background: #3498db;">
-                ⚡ Entrar como Cliente
-            </button>
+<body>
+    <div id="loading" style="display: flex; justify-content: center; align-items: center; height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+        <div style="text-align: center; color: white;">
+            <h1>Cargando JR...</h1>
+            <p>Iniciando sesión automática...</p>
         </div>
     </div>
 
     <script src="js/auth.js"></script>
     <script>
-        function autoLoginAdmin() {
-            const users = auth.users;
-            const adminUser = users.find(u => u.role === 'admin');
-            
-            if (adminUser) {
-                const sessionData = {
-                    userId: adminUser.id,
-                    username: adminUser.username,
-                    role: adminUser.role,
-                    name: adminUser.name,
-                    email: adminUser.email,
-                    loginTime: new Date().toISOString(),
-                    token: auth.generateToken()
-                };
-                localStorage.setItem('jr_session', JSON.stringify(sessionData));
-                window.location.href = 'admin/dashboard.html';
-            }
-        }
-
-        function autoLoginClient() {
-            const users = auth.users;
-            const clientUser = users.find(u => u.role === 'client');
-            
-            if (clientUser) {
-                const sessionData = {
-                    userId: clientUser.id,
-                    username: clientUser.username,
-                    role: clientUser.role,
-                    name: clientUser.name,
-                    email: clientUser.email,
-                    loginTime: new Date().toISOString(),
-                    token: auth.generateToken()
-                };
-                localStorage.setItem('jr_session', JSON.stringify(sessionData));
-                window.location.href = 'client/dashboard.html';
-            }
-        }
-
-        // Auto-login como admin si se accede directamente
+        // Auto-login directo como admin
         window.addEventListener('load', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('auto') === 'admin') {
-                autoLoginAdmin();
-            } else if (urlParams.get('auto') === 'client') {
-                autoLoginClient();
-            }
+            setTimeout(() => {
+                const users = auth.users;
+                const adminUser = users.find(u => u.role === 'admin');
+                
+                if (adminUser) {
+                    const sessionData = {
+                        userId: adminUser.id,
+                        username: adminUser.username,
+                        role: adminUser.role,
+                        name: adminUser.name,
+                        email: adminUser.email,
+                        loginTime: new Date().toISOString(),
+                        token: auth.generateToken()
+                    };
+                    localStorage.setItem('jr_session', JSON.stringify(sessionData));
+                    window.location.href = 'admin/dashboard.html';
+                }
+            }, 500);
         });
     </script>
 </body>
