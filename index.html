@@ -1,107 +1,44 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="JR Inyección Electrónica: diagnóstico computarizado, inyección electrónica y soluciones precisas para tu vehículo.">
-  <title>JR Inyección Electrónica | Diagnóstico preciso</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="theme.css"><link rel="stylesheet" href="theme-final.css">
-  <link rel="stylesheet" href="admin-menu.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JR - Acceso</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-  <!-- Admin Menu Button -->
-  <button class="admin-menu-toggle" id="adminToggle" aria-label="Menú de administración">⚙️</button>
-  
-  <!-- Admin Panel -->
-  <div class="admin-panel" id="adminPanel">
-    <div class="admin-header">
-      <h3>Panel de Administración</h3>
-      <button class="admin-close" id="adminClose">✕</button>
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-box">
+            <h1>JR System</h1>
+            <p class="subtitle">Acceso a la Plataforma</p>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Usuario:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Acceso como:</label>
+                    <select id="role" name="role" required>
+                        <option value="">Seleccionar...</option>
+                        <option value="admin">Administrador</option>
+                        <option value="client">Cliente</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn-login">Iniciar Sesión</button>
+            </form>
+
+            <div id="errorMessage" class="error-message"></div>
+        </div>
     </div>
-    <div class="admin-content">
-      <div class="admin-section">
-        <h4>Contacto</h4>
-        <label>WhatsApp:</label>
-        <input type="text" id="whatsappInput" value="+5493854388511" placeholder="WhatsApp">
-        <button onclick="updateWhatsApp()">Actualizar WhatsApp</button>
-      </div>
-      
-      <div class="admin-section">
-        <h4>Secciones</h4>
-        <label>
-          <input type="checkbox" id="toggleServicios" checked> Servicios
-        </label>
-        <label>
-          <input type="checkbox" id="toggleGaleria" checked> Galería
-        </label>
-        <label>
-          <input type="checkbox" id="toggleFAQ" checked> Preguntas Frecuentes
-        </label>
-      </div>
-      
-      <div class="admin-section">
-        <h4>Tema</h4>
-        <button onclick="toggleTheme()">Cambiar Tema</button>
-      </div>
-      
-      <div class="admin-section">
-        <h4>Información</h4>
-        <p>WhatsApp actual: <strong id="currentWhatsapp">+5493854388511</strong></p>
-      </div>
-    </div>
-  </div>
 
-  <div class="topline"><span>DIAGNÓSTICO AUTOMOTRIZ ESPECIALIZADO</span><span>ATENCIÓN PERSONALIZADA · PRESUPUESTOS CLAROS</span></div>
-  <header class="site-header" id="inicio">
-    <a class="brand" href="#inicio" aria-label="JR Inyección Electrónica, inicio"><span class="brand-mark">JR</span><span>INYECCIÓN<br><b>ELECTRÓNICA</b></span></a>
-    <button class="menu-toggle" aria-label="Abrir menú">☰</button>
-    <nav class="nav-links" aria-label="Navegación principal">
-      <a href="#servicios">Servicios</a><a href="#nosotros">Nosotros</a><a href="#galeria">Galería</a><a href="#faq">Preguntas frecuentes</a>
-      <a class="nav-cta" href="#turno">Reservar turno <span>↗</span></a>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="hero-grid"></div><div class="hero-glow"></div>
-      <div class="hero-content reveal">
-        <div class="eyebrow"><span class="pulse-dot"></span> Precisión que se siente en cada kilómetro</div>
-        <h1>Diagnóstico<br><em>preciso.</em><br>Soluciones reales.</h1>
-        <p>Especialistas en inyección electrónica y diagnóstico computarizado para que tu vehículo vuelva a rendir al máximo.</p>
-        <div class="hero-actions"><a class="button button-primary" href="#presupuesto">Solicitar presupuesto <span>↗</span></a><a class="button button-ghost" href="#servicios">Ver servicios <span>↗</span></a></div>
-        <div class="hero-proof"><span>01</span><i></i><span>02</span><i></i><span>03</span><label>Analizamos · Detectamos · Resolvemos</label></div>
-      </div>
-      <div class="hero-side reveal"><div class="side-card"><span>01 / DIAGNÓSTICO</span><b>La falla no siempre<br>se ve. Se interpreta.</b><small>Lectura de datos en tiempo real</small></div></div>
-      <div class="scroll-hint">SCROLL <span>↓</span></div>
-    </section>
-
-    <section class="marquee" aria-label="Especialidades"><div>INYECTORES <b>✦</b> SENSORES <b>✦</b> ECU <b>✦</b> DIAGNÓSTICO <b>✦</b> ENCENDIDO <b>✦</b> INYECCIÓN ELECTRÓNICA <b>✦</b> TURBO <b>✦</b> COMPUTADORA AUTOMOTRIZ <b>✦</b> INYECTORES <b>✦</b> SENSORES</div></section>
-
-    <section class="section value-section" id="nosotros">
-      <div class="section-label">/ 01 — POR QUÉ ELEGIRNOS</div>
-      <div class="value-layout"><div class="reveal"><h2>La tecnología<br>también puede<br><em>ser humana.</em></h2></div><div class="value-copy reveal"><p class="lead">No cambiamos piezas al azar. Analizamos, diagnosticamos y explicamos cada paso. Tu vehículo merece precisión, y vos merecés certeza.</p></div></div>
-      <div class="stats"><div><strong>01</strong><span>Diagnóstico<br>profesional</span></div><div><strong>02</strong><span>Presupuesto<br>transparente</span></div><div><strong>03</strong><span>Atención<br>personalizada</span></div></div>
-    </section>
-
-    <section class="section dark-section" id="servicios"><div class="section-label">/ 02 — NUESTROS SERVICIOS</div><div class="section-heading"><h2>Todo empieza<br>con un <em>dato.</em></h2><p>Desde el diagnóstico hasta la solución definitiva.</p></div><div class="services-grid"><div class="service-card"><span>01</span><h3>Diagnóstico Computarizado</h3><p>Lectura y análisis de códigos de error. Identificamos la raíz del problema en segundos.</p></div><div class="service-card"><span>02</span><h3>Inyección Electrónica</h3><p>Reparación y optimización de sistemas de inyección para máximo rendimiento.</p></div><div class="service-card"><span>03</span><h3>Sensor Cleaning</h3><p>Limpieza profesional de sensores y componentes electrónicos críticos.</p></div><div class="service-card"><span>04</span><h3>Reprogramación ECU</h3><p>Actualización y calibración de centralitas electrónicas automotrices.</p></div></div></section>
-
-    <section class="section process-section"><div class="section-label">/ 03 — CÓMO TRABAJAMOS</div><div class="process-heading"><h2>Del síntoma<br>a la <em>solución.</em></h2></div><div class="process-list"><div><strong>01</strong><p><b>Escuchamos</b> Entendemos el problema desde tu perspectiva.</p></div><div><strong>02</strong><p><b>Analizamos</b> Diagnóstico profundo con equipos de última generación.</p></div><div><strong>03</strong><p><b>Explicamos</b> Te mostramos exactamente qué falla y por qué.</p></div><div><strong>04</strong><p><b>Resolvemos</b> Reparación precisa con garantía en el trabajo.</p></div></div></section>
-
-    <section class="gallery-section" id="galeria"><div class="section gallery-intro"><div class="section-label">/ 04 — EL TALLER EN ACCIÓN</div><h2>Precisión en<br><em>movimiento.</em></h2><p>Cada diagnóstico, cada reparación, cuenta una historia de precisión y dedicación.</p></div><div class="gallery-grid"><div class="gallery-item"></div><div class="gallery-item"></div><div class="gallery-item"></div><div class="gallery-item"></div></div></section>
-
-    <section class="section contact-section" id="presupuesto"><div class="contact-copy"><div class="section-label">/ 05 — HABLEMOS</div><h2>Tu vehículo<br>te está<br><em>hablando.</em></h2><p>¿Notás algo raro en el funcionamiento? Contanos y nos encargaremos del resto. Presupuesto sin compromiso.</p><a class="button button-primary" href="https://wa.me/5493854388511?text=Hola%2C%20quiero%20consultar%20por%20un%20diagn%C3%B3stico%20para%20mi%20veh%C3%ADculo." target="_blank">Consultar ahora <span>↗</span></a></div></section>
-
-    <section class="section appointment-section" id="turno"><div class="appointment-box"><div><div class="section-label">/ 06 — RESERVÁ TU TURNO</div><h2>Un buen diagnóstico<br>empieza con un<br><em>buen encuentro.</em></h2><p>Selecciona un horario que se ajuste a tu agenda y nos vemos en el taller.</p><form id="appointmentForm"><input type="text" placeholder="Tu nombre" required><input type="email" placeholder="Tu email" required><input type="tel" placeholder="Tu teléfono" required><select required><option value="">Selecciona un servicio</option><option value="diagnostico">Diagnóstico Computarizado</option><option value="inyeccion">Inyección Electrónica</option><option value="sensores">Limpieza de Sensores</option><option value="ecu">Reprogramación ECU</option></select><input type="datetime-local" required><button type="submit" class="button button-primary">Reservar turno <span>↗</span></button></form></div></div></section>
-    
-    <section class="section faq-section" id="faq"><div class="section-label">/ 07 — PREGUNTAS FRECUENTES</div><h2>Lo que necesitás<br><em>saber.</em></h2><div class="faq-list"><details><summary>¿Cuánto tarda un diagnóstico?</summary><p>El diagnóstico inicial tarda entre 30 y 60 minutos, dependiendo de la complejidad del caso.</p></details><details><summary>¿Tienen garantía en el trabajo?</summary><p>Sí, ofrecemos garantía en todos nuestros trabajos. Los detalles varían según el servicio.</p></details><details><summary>¿Cuál es el costo de un diagnóstico?</summary><p>El diagnóstico tiene un valor accesible. Si realizás la reparación con nosotros, el costo del diagnóstico se descuenta.</p></details><details><summary>¿Trabajan con mi marca de vehículo?</summary><p>Trabajamos con prácticamente todas las marcas. Contáctanos para confirmar si tenemos experiencia con tu modelo.</p></details></div></section>
-  </main>
-
-  <footer><div class="footer-brand"><a class="brand" href="#inicio"><span class="brand-mark">JR</span><span>INYECCIÓN<br><b>ELECTRÓNICA</b></span></a><p>Diagnóstico preciso.<br>Soluciones reales.<br>Atención personalizada.</p></div><div class="footer-links"><h4>Enlaces rápidos</h4><a href="#servicios">Servicios</a><a href="#nosotros">Nosotros</a><a href="#galeria">Galería</a><a href="#faq">Preguntas Frecuentes</a><a href="#turno">Reservar turno</a></div><div class="footer-contact"><h4>Contacto</h4><p><strong>WhatsApp:</strong> <a href="https://wa.me/5493854388511" target="_blank" id="whatsappFooter">+5493854388511</a></p></div></footer>
-  <a class="whatsapp" href="https://wa.me/5493854388511?text=Hola%2C%20quiero%20consultar%20por%20un%20diagn%C3%B3stico%20para%20mi%20veh%C3%ADculo." target="_blank" aria-label="Contactar por WhatsApp">💬</a>
-  <script src="admin-menu.js"></script>
-  <script src="script.js"></script>
+    <script src="js/auth.js"></script>
 </body>
 </html>

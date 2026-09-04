@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin - JR</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <h2>JR Admin</h2>
+            <ul class="nav-menu">
+                <li><a href="#dashboard" class="nav-link active" data-section="dashboard">📊 Dashboard</a></li>
+                <li><a href="#usuarios" class="nav-link" data-section="usuarios">👥 Usuarios</a></li>
+                <li><a href="#reportes" class="nav-link" data-section="reportes">📈 Reportes</a></li>
+                <li><a href="#configuracion" class="nav-link" data-section="configuracion">⚙️ Configuración</a></li>
+            </ul>
+            <hr style="margin: 30px 0; opacity: 0.3;">
+            <button class="logout-btn" onclick="adminApp.logout()" style="width: 100%;">Cerrar Sesión</button>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-content">
+            <!-- TOP BAR -->
+            <div class="top-bar">
+                <h1 id="pageTitle">Dashboard</h1>
+                <div id="userInfo" style="text-align: right;">
+                    <span id="userName" style="color: #667eea; font-weight: bold;"></span>
+                    <p style="color: #666; font-size: 12px;">Administrador</p>
+                </div>
+            </div>
+
+            <!-- DASHBOARD SECTION -->
+            <div id="dashboard" class="content-section active">
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <h3>Usuarios Totales</h3>
+                        <p class="card-value" id="totalUsers">0</p>
+                    </div>
+                    <div class="card">
+                        <h3>Clientes Activos</h3>
+                        <p class="card-value" id="activeClients">0</p>
+                    </div>
+                    <div class="card">
+                        <h3>Sesiones Activas</h3>
+                        <p class="card-value" id="activeSessions">0</p>
+                    </div>
+                    <div class="card">
+                        <h3>Última Actividad</h3>
+                        <p id="lastActivity" style="color: #667eea; font-weight: bold;">Hace poco</p>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <h3 style="margin-bottom: 15px; color: #2c3e50;">Usuarios Recientes</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Usuario</th>
+                                <th>Email</th>
+                                <th>Rol</th>
+                                <th>Registro</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentUsersTable">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- USUARIOS SECTION -->
+            <div id="usuarios" class="content-section">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2>Gestión de Usuarios</h2>
+                    <button class="btn-login" onclick="adminApp.openUserModal()" style="width: auto;">+ Nuevo Usuario</button>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Usuario</th>
+                                <th>Email</th>
+                                <th>Rol</th>
+                                <th>Creado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTable">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- REPORTES SECTION -->
+            <div id="reportes" class="content-section">
+                <h2>Reportes y Estadísticas</h2>
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <h3>Accesos Hoy</h3>
+                        <p class="card-value" id="accessesToday">-</p>
+                    </div>
+                    <div class="card">
+                        <h3>Usuarios Nuevos (7 días)</h3>
+                        <p class="card-value" id="newUsersWeek">-</p>
+                    </div>
+                    <div class="card">
+                        <h3>Tasa de Actividad</h3>
+                        <p class="card-value" id="activityRate">-</p>
+                    </div>
+                </div>
+
+                <div class="table-container" style="margin-top: 20px;">
+                    <h3 style="margin-bottom: 15px; color: #2c3e50;">Historial de Accesos</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Usuario</th>
+                                <th>Acción</th>
+                                <th>Fecha/Hora</th>
+                                <th>IP</th>
+                            </tr>
+                        </thead>
+                        <tbody id="activityLog">
+                            <tr>
+                                <td colspan="4" style="text-align: center; color: #999;">No hay registros</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- CONFIGURACIÓN SECTION -->
+            <div id="configuracion" class="content-section">
+                <h2>Configuración del Sistema</h2>
+
+                <div class="card" style="max-width: 600px;">
+                    <h3>Seguridad</h3>
+                    <form>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="requireSSL" checked> Requerir HTTPS/SSL
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="enable2FA" checked> Habilitar 2FA
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="sessionTimeout">Tiempo de sesión (minutos):</label>
+                            <input type="number" id="sessionTimeout" value="30" min="5">
+                        </div>
+                        <button type="button" class="btn-login" onclick="adminApp.saveSettings()">Guardar Configuración</button>
+                    </form>
+                </div>
+
+                <div class="card" style="max-width: 600px; margin-top: 20px;">
+                    <h3>Información del Sistema</h3>
+                    <p><strong>Versión:</strong> 1.0.0</p>
+                    <p><strong>Última actualización:</strong> 2026-09-04</p>
+                    <p><strong>Base de datos:</strong> LocalStorage</p>
+                    <button type="button" class="btn-login" onclick="adminApp.backupData()" style="background: #27ae60;">📥 Descargar Backup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL PARA NUEVO USUARIO -->
+    <div id="userModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Nuevo Usuario</h2>
+                <span class="close-modal" onclick="adminApp.closeUserModal()">&times;</span>
+            </div>
+            <form id="userForm">
+                <div class="form-group">
+                    <label for="modalUsername">Usuario:</label>
+                    <input type="text" id="modalUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="modalEmail">Email:</label>
+                    <input type="email" id="modalEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="modalPassword">Contraseña:</label>
+                    <input type="password" id="modalPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="modalRole">Rol:</label>
+                    <select id="modalRole">
+                        <option value="client">Cliente</option>
+                        <option value="admin">Administrador</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-login">Guardar Usuario</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

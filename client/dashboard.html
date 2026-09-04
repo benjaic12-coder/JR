@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Panel - JR</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="client-container">
+    <!-- HEADER -->
+    <div class="client-header">
+        <div>
+            <h1>Bienvenido a JR</h1>
+            <p style="color: #666; margin-top: 5px;">Panel de cliente</p>
+        </div>
+        <div style="text-align: right;">
+            <p id="clientName" style="color: #667eea; font-weight: bold; font-size: 16px;"></p>
+            <p id="clientEmail" style="color: #666; font-size: 13px;"></p>
+            <button class="logout-btn" onclick="clientApp.logout()">Cerrar Sesión</button>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="client-content">
+        <h2>Información de tu Cuenta</h2>
+
+        <div class="info-box">
+            <h3>👤 Perfil</h3>
+            <p><strong>Usuario:</strong> <span id="profileUsername"></span></p>
+            <p><strong>Email:</strong> <span id="profileEmail"></span></p>
+            <p><strong>Estado:</strong> <span style="color: #27ae60; font-weight: bold;">✓ Activo</span></p>
+        </div>
+
+        <div class="info-box">
+            <h3>🔐 Seguridad</h3>
+            <p><strong>Última contraseña cambiada:</strong> <span id="lastPasswordChange">N/A</span></p>
+            <p><strong>Autenticación 2FA:</strong> <span style="color: #e74c3c;">No configurada</span></p>
+            <button class="btn-login" onclick="clientApp.openChangePasswordModal()" style="width: auto; margin-top: 10px;">Cambiar Contraseña</button>
+        </div>
+
+        <div class="info-box">
+            <h3>📊 Actividad Reciente</h3>
+            <p><strong>Último acceso:</strong> <span id="lastLogin">Ahora</span></p>
+            <p><strong>Accesos en los últimos 30 días:</strong> <span id="loginCount">-</span></p>
+        </div>
+
+        <div class="info-box">
+            <h3>📋 Servicios Disponibles</h3>
+            <ul style="margin-left: 20px; color: #555; margin-top: 10px;">
+                <li>✓ Acceso al portal</li>
+                <li>✓ Soporte técnico</li>
+                <li>✓ Descarga de reportes</li>
+                <li>✓ Gestión de perfil</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h3>❓ Ayuda y Soporte</h3>
+            <p>¿Necesitas ayuda? Contacta con nuestro equipo de soporte:</p>
+            <p style="margin-top: 10px;">
+                <strong>Email:</strong> soporte@jr.com<br>
+                <strong>Teléfono:</strong> +34 900 123 456<br>
+                <strong>Horario:</strong> Lunes a Viernes, 9:00 - 18:00
+            </p>
+        </div>
+    </div>
+
+    <!-- MODAL CAMBIAR CONTRASEÑA -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Cambiar Contraseña</h2>
+                <span class="close-modal" onclick="clientApp.closePasswordModal()">&times;</span>
+            </div>
+            <form id="passwordForm">
+                <div class="form-group">
+                    <label for="currentPassword">Contraseña Actual:</label>
+                    <input type="password" id="currentPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">Nueva Contraseña:</label>
+                    <input type="password" id="newPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirmar Contraseña:</label>
+                    <input type="password" id="confirmPassword" required>
+                </div>
+                <button type="submit" class="btn-login">Cambiar Contraseña</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script src="client.js"></script>
+</body>
+</html>
